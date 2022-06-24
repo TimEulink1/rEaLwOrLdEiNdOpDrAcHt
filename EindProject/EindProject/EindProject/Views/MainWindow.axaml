@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:EindProject.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="EindProject.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="EindProject"
+        TransparencyLevelHint="Mica"
+  Background="Transparent"
+  ExtendClientAreaToDecorationsHint="True">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+  <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal"> 
+    <StackPanel HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Margin="20">
+      <TextBox Margin="10" Watermark="ApiKey" Text="{Binding ApiKey}" />
+      <TextBox  Margin="10" Watermark="SiteId" Text="{Binding SiteId}" />
+      <TextBox  Margin="10" Watermark="Postcode" Text="{Binding Postcode}" />
+      <Button
+              Margin="10"
+              HorizontalAlignment="Center"
+              Content="Haal gegevens op"
+                  Command="{Binding DoSomething}"/>
+    </StackPanel>
+    <StackPanel HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+                Margin="0,20,20,0">
+      <TextBlock Text="Prognose komende 4 dagen:"></TextBlock>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="watt per zonnepaneel:"></TextBlock>
+        <TextBlock Text="{Binding PrognosisPerPenal}" />
+        <TextBlock Text=" Watt" />
+      </StackPanel>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="Totaal:"></TextBlock>
+        <TextBlock Text="{Binding PrognosTotal}" />
+        <TextBlock Text=" Watt" />
+      </StackPanel>
+    </StackPanel>
+    <StackPanel HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+                Margin="0,20,0,0">
+      <TextBlock Text="voordelen voor het milieu:"></TextBlock>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="Bomen geplant:"></TextBlock>
+        <TextBlock Text="{Binding EnvBenfitsResult.EnvBenefits.treesPlanted}" />
+      </StackPanel>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="Lampen bespaard:"></TextBlock>
+        <TextBlock Text="{Binding EnvBenfitsResult.EnvBenefits.lightBulbs}" />
+      </StackPanel>
+    </StackPanel>
+    <StackPanel HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+                Margin="20,20,0,0">
+      <TextBlock Text="Overzicht:"></TextBlock>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="Huidige vermogen:"></TextBlock>
+        <TextBlock Text="{Binding InverterResult.overview.currentPower.power}" />
+        <TextBlock Text=" Watt" />
+      </StackPanel>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="Vermogen afgelopen dag:"></TextBlock>
+        <TextBlock Text="{Binding InverterResult.overview.lastDayData.energy}" />
+        <TextBlock Text=" Watt" />
+      </StackPanel>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="Vermogen afgelopen maand:"></TextBlock>
+        <TextBlock Text="{Binding InverterResult.overview.lastMonthData.energy}" />
+        <TextBlock Text=" Watt" />
+      </StackPanel>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="Vermogen afgelopen jaar:"></TextBlock>
+        <TextBlock Text="{Binding InverterResult.overview.lastYearData.energy}" />
+        <TextBlock Text=" Watt" />
+      </StackPanel>
+      <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+        <TextBlock Margin="0,0,10,0" Text="Vermogen totaal:"></TextBlock>
+        <TextBlock Text="{Binding InverterResult.overview.lifeTimeData.energy}" />
+        <TextBlock Text=" Watt" />
+      </StackPanel>
+    </StackPanel>
+  </StackPanel>
+</Window>
